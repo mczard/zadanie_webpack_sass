@@ -1,0 +1,1 @@
+console.log("Jest na stronie kontaktów");

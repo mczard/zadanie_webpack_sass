@@ -1,0 +1,169 @@
+@use "./variables/vars_use.scss" with (
+  $fajny-kolor: black
+);
+@import "./variables/vars.scss";
+@import "./theme/base.scss";
+
+@mixin mainBackground() {
+  background-color: lightblue;
+  opacity: 0.5;
+  border: 3px solid green;
+}
+
+///////////////////////////////////////////
+.change {
+  border: 2px solid vars_use.$main-color;
+}
+
+.wrapper {
+  h1 {
+    color: white;
+  }
+  h2 {
+    color: blue;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  @include mainBackground();
+  max-width: 250px;
+  background-color: blue;
+}
+
+.box {
+  width: 10vw;
+  padding: 20px;
+  .box-header {
+    font-size: 30px;
+    @media screen and (max-width: 768px) {
+      font-size: 20px;
+    }
+  }
+  .box-header-small {
+    font-size: 25px;
+  }
+  .box-body {
+    color: white;
+  }
+  .box-footer {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 80vw;
+  }
+}
+
+.sampleClass {
+  color: red;
+  &__block {
+    color: yellow;
+  }
+  @include mainBackground();
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+
+  &.positive {
+    color: rgb(0, 220, 0);
+    background-color: rgba(0, 220, 0, 0.2);
+    &:hover {
+      background-color: rgba(0, 220, 0, 0.3);
+    }
+  }
+
+  &.negative {
+    color: rgb(220, 0, 0);
+    background-color: rgba(220, 0, 0, 0.2);
+    &:hover {
+      background-color: rgba(220, 0, 0, 0.3);
+    }
+  }
+}
+
+.message {
+  font-size: 16px;
+  .wrapper & {
+    background-color: rgba(0, 255, 0, 0.3);
+  }
+  .container & {
+    background-color: $moj-color; //rgba(255, 0, 0, 0.3);
+  }
+}
+
+h1 {
+  $zmienna-ramka: 1px solid black !global;
+  $moj-color: red !global;
+  color: $moj_color;
+}
+
+button {
+  $zmienna-ramka: 2px solid red !default;
+  border: $zmienna-ramka;
+  color: white;
+}
+
+$width: 250px;
+$height: 100px;
+$background-color: blue;
+
+@mixin size($w: 300px, $h: 70px, $bc: yellow) {
+  width: $w;
+  height: $h;
+  background-color: $bc;
+  color: red;
+}
+.wrapper {
+  @include size();
+}
+.wrapper2 {
+  @include size($width * 2, $height * 0.5, green);
+}
+
+@mixin center-block {
+  display: flex;
+  align-items: center;
+  @content;
+  justify-content: center;
+}
+
+.button {
+  @include center-block {
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+}
+
+.message {
+  border: 1px solid grey;
+  color: grey;
+  padding: 1em;
+}
+.message-success {
+  @extend .message;
+  border-color: green;
+  color: green;
+}
+.message-error {
+  @extend .message;
+  border-color: red;
+  color: red;
+}
+
+.wrapper {
+  background-color: black;
+
+  .wrapper-message {
+    border: 2px solid gold;
+  }
+
+  .wrapper-message-success {
+    @extend .wrapper-message;
+    color: gold;
+  }
+}
